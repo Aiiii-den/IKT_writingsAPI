@@ -61,13 +61,13 @@ app.patch('/writing/:id', async(req, res) => {
     try {
         const writing = await Writings.findOne({ _id: req.params.id })
         if (req.body.text) {
-            writing.firstname = req.body.text
+            writing.text = req.body.text
         }
         if (req.body.date) {
-            writing.lastname = req.body.date
+            writing.date = req.body.date
         }
         if (req.body.location) {
-            writing.email = req.body.location
+            writing.location = req.body.location
         }
         await Writings.updateOne({ _id: req.params.id }, writing);
         res.send(writing)

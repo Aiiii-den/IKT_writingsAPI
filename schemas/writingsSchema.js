@@ -25,7 +25,7 @@ const writingsSchema=new mongoose.Schema({
     },
     prompt_id: {
         type: String,
-        required: true,
+        required: false,
         trim: true
     }
 })
