@@ -1,0 +1,126 @@
+openapi: 3.0.3
+info:
+  title: WritingsAPI
+  description: API which enables the input, read all and deletion of text inputs
+  version: 1.0.0
+servers:
+  - url: 'https://localhost:3000/'
+paths:
+  /writings:
+    get:
+      tags:
+        - Writings
+      summary: read all writings
+      operationId: getAllWritings
+      description: download an array of all available writings
+      responses:
+        '200':
+          description: all available writings read
+        '404':
+          description: writing could not be read
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WritingsOutput'
+    post:
+      tags:
+        - Writings
+      summary: add new writing
+      operationId: createNewWriting
+      description: create and save new writing
+      responses:
+        '201':
+          description: writing created
+        '404':
+          description: writing could not be saved
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WritingsInput'
+        description: new text input
+
+    patch:
+      tags:
+        - Writings
+      summary: updates single writing
+      operationId: deleteWriting
+      description: delete a writing from the database by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: writings-id
+          schema:
+              type: string
+      responses:
+        '200':
+          description: writing updated
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/WritingsOutput'
+        '404':
+          description: writing could not be updated
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WritingsInput'
+        description: writing that's to be updated
+
+    delete:
+      tags:
+         - Writings
+      summary: deletes single writing
+      operationId: deleteWriting
+      description: delete a writing from the database by id
+      parameters:
+        - name: _id
+          in: path
+          required: true
+          description: writings_id
+          schema:
+            type : string
+      responses:
+        '204':
+          description: writing deleted
+        '404':
+          description: writing could not be deleted
+        '400':
+          description: writing could not be found
+
+
+
+components:
+    schemas:
+      WritingsOutput:
+        type: object
+        required:
+          - _id
+          - text
+          - date
+        properties:
+          _id:
+            type: string
+            example: fwmi42negfi
+          text:
+            type: string
+            example: thisIsAText
+          date:
+            type: string
+            example: 29-12-2023
+      WritingsInput:
+        type: object
+        required:
+          - text
+          - date
+        properties:
+          text:
+            type: string
+            example: thisIsAText
+          date:
+            type: string
+            example: 29-12-2023

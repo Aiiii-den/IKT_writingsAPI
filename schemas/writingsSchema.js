@@ -17,16 +17,6 @@ const writingsSchema=new mongoose.Schema({
         type: Date,
         required: false,
         trim: true
-    },
-    location: {
-        type: String,
-        required: false,
-        trim: true
-    },
-    prompt_id: {
-        type: String,
-        required: false,
-        trim: true
     }
 })
 

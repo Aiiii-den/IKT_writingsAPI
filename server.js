@@ -28,7 +28,6 @@ app.post('/writing', async(req, res) => {
         const newWriting = new Writings ({
             text: req.body.text,
             date: req.body.date,
-            location: req.body.location
         })
         const result = await newWriting.save();
         res.status(201);
@@ -47,6 +46,7 @@ app.get('/writing', async(req, res) => {
         Writings.find({
         }).then(async (Writings) => {
             console.log(Writings);
+            res.status(200);
             res.send(Writings);
         })
     } catch {
@@ -66,10 +66,8 @@ app.patch('/writing/:id', async(req, res) => {
         if (req.body.date) {
             writing.date = req.body.date
         }
-        if (req.body.location) {
-            writing.location = req.body.location
-        }
         await Writings.updateOne({ _id: req.params.id }, writing);
+        res.status(200);
         res.send(writing)
     } catch {
         res.status(404)
@@ -85,7 +83,7 @@ app.delete('/writing/:id', async(req, res) => {
             res.status(204)
             res.send( { message: "Writing deleted" })
         } else {
-            res.status(404)
+            res.status(400)
             res.send({ error: "Writing does not exist!" })
         }
     } catch {
