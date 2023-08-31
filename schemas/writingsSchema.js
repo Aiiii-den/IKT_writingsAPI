@@ -14,8 +14,8 @@ const writingsSchema=new mongoose.Schema({
         trim: true
     },
     date: {
-        type: Date,
-        required: false,
+        type: String,
+        required: true,
         trim: true
     }
 })
