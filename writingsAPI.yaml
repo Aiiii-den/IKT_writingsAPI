@@ -4,9 +4,9 @@ info:
   description: API which enables the input, read all and deletion of text inputs
   version: 1.0.0
 servers:
-  - url: 'https://localhost:3000/'
+  - url: 'https://localhost:3000'
 paths:
-  /writings:
+  /writing:
     get:
       tags:
         - Writings
@@ -42,6 +42,7 @@ paths:
               $ref: '#/components/schemas/WritingsInput'
         description: new text input
 
+  /writing/:id:
     patch:
       tags:
         - Writings
@@ -92,8 +93,6 @@ paths:
         '400':
           description: writing could not be found
 
-
-
 components:
     schemas:
       WritingsOutput:
@@ -111,7 +110,7 @@ components:
             example: thisIsAText
           date:
             type: string
-            example: Thu Aug 31 2023 19:26:02 GMT+0200 (Mitteleuropäische Sommerzeit)
+            example: 2023-09-01T19:38:36.045Z
       WritingsInput:
         type: object
         required:
@@ -123,4 +122,4 @@ components:
             example: thisIsAText
           date:
             type: string
-            example: Thu Aug 31 2023 19:26:02 GMT+0200 (Mitteleuropäische Sommerzeit)
+            example: T2023-09-01T19:38:36.045Z
