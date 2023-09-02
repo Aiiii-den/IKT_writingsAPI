@@ -9,10 +9,13 @@
 const express = require('express');
 const router = express.Router();
 const { Writings } = require('../schemas/writingsSchema');
-const ObjectId = require('mongodb').ObjectId;
 
 
-// POST one new prompt
+
+
+
+
+/*// POST one new prompt
 router.post('/', async(req, res) => {
     try {
         const newWriting = {
@@ -57,6 +60,6 @@ router.delete('/:id', async(req, res) => {
         res.status(404)
         res.send({ error: "something went wrong :(" })
     }
-});
+});*/
 
 module.exports = router;
