@@ -1,6 +1,6 @@
 # IKT_writingsAPI
 
-### ### Second REST-APIs for my final PWA project
+### Second REST-APIs for my final PWA project
 
 __1. Prompt API :__ https://github.com/Aiiii-den/IKT_promptAPI
 
@@ -24,10 +24,12 @@ __3. Images API:__ https://github.com/Aiiii-den/IKT_imagesAPI
    DB_CONNECTION: mongodb+srv://<user>:<password>@<collectionId>.mongodb.net/?retryWrites=true&w=majority
    DATABASE: <database>
    ```
+4. Set cors() in server.js to your local connection point
+5. Run with `npm run watch`
 ### Postman examples requests:
 
 
 
 ### Frontend:
-Frontend repository can be found at the following URL: https://github.com/aiiii-den/IKT_frontend  
+Frontend repository can be found at the following URL: https://github.com/aiiii-den/IKT_frontendNew  
 Or deployed at: https://lalalala

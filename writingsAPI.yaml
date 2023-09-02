@@ -47,8 +47,8 @@ paths:
       tags:
         - Writings
       summary: updates single writing
-      operationId: deleteWriting
-      description: delete a writing from the database by id
+      operationId: updateWriting
+      description: updates a writing from the database by id
       parameters:
         - name: id
           in: path
