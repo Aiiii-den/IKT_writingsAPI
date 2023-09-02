@@ -65,7 +65,7 @@ router.get('', async(req, res) => {
     } catch {
         res.status(404);
         res.send({
-            error: "Writings could not be read!"
+            error: "Writings could not be read :("
         })
     }
 });
@@ -85,7 +85,7 @@ router.patch('/:id', async(req, res) => {
         res.send(writing)
     } catch {
         res.status(404)
-        res.send({ error: "Member does not exist!" })
+        res.send({ error: "Writing could not be updated :(" })
     }
 });
 
@@ -93,17 +93,12 @@ router.delete('/:id', async(req, res) => {
     try {
         const writing = await Writings.deleteOne({ _id: req.params.id })
         console.log('writing', writing)
-        if(writing.deletedCount === 1) {
             sendNotification('Entry with id '+ req.params.id + ' was deleted :)');
             res.status(204)
             res.send( { message: "Writing deleted" })
-        } else {
-            res.status(400)
-            res.send({ error: "Writing does not exist!" })
-        }
     } catch {
         res.status(404)
-        res.send({ error: "Something went wrong :(" })
+        res.send({ error: "Writing could not be deleted :(" })
     }
 });
 

@@ -17,7 +17,7 @@ paths:
         '200':
           description: all available writings read
         '404':
-          description: writing could not be read
+          description: writings could not be read
           content:
             application/json:
               schema:
@@ -90,8 +90,6 @@ paths:
           description: writing deleted
         '404':
           description: writing could not be deleted
-        '400':
-          description: writing could not be found
 
 components:
     schemas:
