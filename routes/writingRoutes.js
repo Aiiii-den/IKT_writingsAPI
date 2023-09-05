@@ -20,7 +20,7 @@ const pushSubscription = {
 };
 
 function sendNotification(message) {
-    webpush.setVapidDetails('mailto:aiiden.dov@gmail.com', publicVapidKey, privateVapidKey);
+    webpush.setVapidDetails('mailto:aiiden.dev@gmail.com', publicVapidKey, privateVapidKey);
     const payload = JSON.stringify({
         title: 'New Push Notification',
         content: message,
