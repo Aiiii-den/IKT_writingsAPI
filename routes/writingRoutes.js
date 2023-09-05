@@ -29,7 +29,6 @@ function sendNotification(message) {
     webpush.sendNotification(pushSubscription,payload)
         .catch(err => console.error(err));
     console.log('push notification sent');
-    // res.status(201).json({ message: 'push notification sent'});
 }
 
 /**
@@ -42,7 +41,7 @@ router.post('', async(req, res) => {
             date: req.body.date,
         })
         const result = await newWriting.save();
-        //sendNotification('Entry was saved in database :)');
+        sendNotification('Entry was saved in database :)');
         res.status(201);
         res.send(result);
 
@@ -80,7 +79,7 @@ router.patch('/:id', async(req, res) => {
             writing.date = req.body.date
         }
         await Writings.updateOne({ _id: req.params.id }, writing);
-        //sendNotification('Entry with id ' + req.params.id + ' was updated :)');
+        sendNotification('Entry with id ' + req.params.id + ' was updated :)');
         res.status(200);
         res.send(writing)
     } catch {
@@ -93,7 +92,7 @@ router.delete('/:id', async(req, res) => {
     try {
         const writing = await Writings.deleteOne({ _id: req.params.id })
         console.log('writing', writing)
-            //sendNotification('Entry with id '+ req.params.id + ' was deleted :)');
+            sendNotification('Entry with id '+ req.params.id + ' was deleted :)');
             res.status(204)
             res.send( { message: "Writing deleted" })
     } catch {
