@@ -4,6 +4,7 @@ const { Writings } = require('../schemas/writingsSchema');
 const webpush = require('web-push')
 let { mongoose } = require('../config/mongodb');
 require('dotenv').config();
+let pushMessage = '';
 
 
 /**
@@ -41,16 +42,18 @@ router.post('', async(req, res) => {
             date: req.body.date,
         })
         const result = await newWriting.save();
-        sendNotification('Entry was saved in database :)');
+        pushMessage = 'Entry was saved in database :)'
         res.status(201);
         res.send(result);
 
     }catch {
+        pushMessage = "Writing could not be saved!"
         res.status(404);
         res.send({
-            error: "Writing could not be saved! "
+            error: "Writing could not be saved!"
         })
     }
+    sendNotification(pushMessage);
 });
 
 router.get('', async(req, res) => {
@@ -79,26 +82,30 @@ router.patch('/:id', async(req, res) => {
             writing.date = req.body.date
         }
         await Writings.updateOne({ _id: req.params.id }, writing);
-        sendNotification('Entry with id ' + req.params.id + ' was updated :)');
+        pushMessage= 'Entry with id ' + req.params.id + ' was updated :)';
         res.status(200);
         res.send(writing)
     } catch {
+        pushMessage = "Writing could not be updated :("
         res.status(404)
         res.send({ error: "Writing could not be updated :(" })
     }
+    sendNotification(pushMessage);
 });
 
 router.delete('/:id', async(req, res) => {
     try {
         const writing = await Writings.deleteOne({ _id: req.params.id })
         console.log('writing', writing)
-            sendNotification('Entry with id '+ req.params.id + ' was deleted :)');
+            pushMessage = 'Entry with id '+ req.params.id + ' was deleted :)';
             res.status(204)
             res.send( { message: "Writing deleted" })
     } catch {
+        pushMessage = "Writing could not be deleted :("
         res.status(404)
         res.send({ error: "Writing could not be deleted :(" })
     }
+    sendNotification(pushMessage);
 });
 
 module.exports = router;
