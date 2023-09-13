@@ -21,6 +21,7 @@ const pushSubscription = {
 };
 
 function sendNotification(message) {
+    try{
     webpush.setVapidDetails('mailto:aiiden.dev@gmail.com', publicVapidKey, privateVapidKey);
     const payload = JSON.stringify({
         title: 'New Push Notification',
@@ -30,6 +31,10 @@ function sendNotification(message) {
     webpush.sendNotification(pushSubscription,payload)
         .catch(err => console.error(err));
     console.log('push notification sent');
+    }catch{
+        console.log('push notif could not be send')
+    }
+
 }
 
 /**
