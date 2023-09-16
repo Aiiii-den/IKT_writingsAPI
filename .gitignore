@@ -131,6 +131,7 @@ dist
 
 # IntelliJ dir
 .idea
+.DS_Store
 
 # Experiments
 /package-lock.json

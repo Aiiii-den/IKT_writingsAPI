@@ -4,6 +4,7 @@ const { Writings } = require('../schemas/writingsSchema');
 const webpush = require('web-push')
 let { mongoose } = require('../config/mongodb');
 require('dotenv').config();
+let pushMessage = '';
 
 
 /**
@@ -12,15 +13,16 @@ require('dotenv').config();
 const publicVapidKey = process.env.PUBLIC_KEY;
 const privateVapidKey = process.env.PRIVATE_KEY;
 const pushSubscription = {
-    endpoint: 'https://fcm.googleapis.com/fcm/send/dsGiMQR075Q:APA91bEgGw1mlyEVVMWekFgyTF_YXxjZJWYsQATucT-uMTx3FrrW5tOYQ5Ii0uad9L5LzJ4VDnBBEzRHpB-ALninJOHUv5cwVicv-QmkntGqV_GeFu91ly2orHP1u9i6vtoF2Pz4SfL-',
+    endpoint: process.env.ENDPOINT,
     keys: {
-        p256dh: 'BAQgZsvrvy_BTgnnzHIDE3uFrsulqd9xxCcSHwXC4zb0qITUudroqFyIqssA6F5q7JT92HGYpP37q79iKEz4MMU',
-        auth: 'JxKZLfDaF-BNz9s2Gu7jJQ'
+        p256dh: process.env.P256DH_KEY,
+        auth: process.env.AUTH_KEY
     }
 };
 
 function sendNotification(message) {
-    webpush.setVapidDetails('mailto:aiiden.dov@gmail.com', publicVapidKey, privateVapidKey);
+    try{
+    webpush.setVapidDetails('mailto:aiiden.dev@gmail.com', publicVapidKey, privateVapidKey);
     const payload = JSON.stringify({
         title: 'New Push Notification',
         content: message,
@@ -29,7 +31,10 @@ function sendNotification(message) {
     webpush.sendNotification(pushSubscription,payload)
         .catch(err => console.error(err));
     console.log('push notification sent');
-    // res.status(201).json({ message: 'push notification sent'});
+    }catch{
+        console.log('push notif could not be send')
+    }
+
 }
 
 /**
@@ -42,16 +47,18 @@ router.post('', async(req, res) => {
             date: req.body.date,
         })
         const result = await newWriting.save();
-        sendNotification('Entry was saved in database :)');
+        pushMessage = 'Entry was saved in database :)'
         res.status(201);
         res.send(result);
 
     }catch {
+        pushMessage = "Writing could not be saved!"
         res.status(404);
         res.send({
-            error: "Writing could not be saved! "
+            error: "Writing could not be saved!"
         })
     }
+    sendNotification(pushMessage);
 });
 
 router.get('', async(req, res) => {
@@ -65,7 +72,7 @@ router.get('', async(req, res) => {
     } catch {
         res.status(404);
         res.send({
-            error: "Writings could not be read!"
+            error: "Writings could not be read :("
         })
     }
 });
@@ -80,31 +87,30 @@ router.patch('/:id', async(req, res) => {
             writing.date = req.body.date
         }
         await Writings.updateOne({ _id: req.params.id }, writing);
-        sendNotification('Entry with id ' + req.params.id + ' was updated :)');
+        pushMessage= 'Entry with id ' + req.params.id + ' was updated :)';
         res.status(200);
         res.send(writing)
     } catch {
+        pushMessage = "Writing could not be updated :("
         res.status(404)
-        res.send({ error: "Member does not exist!" })
+        res.send({ error: "Writing could not be updated :(" })
     }
+    sendNotification(pushMessage);
 });
 
 router.delete('/:id', async(req, res) => {
     try {
         const writing = await Writings.deleteOne({ _id: req.params.id })
         console.log('writing', writing)
-        if(writing.deletedCount === 1) {
-            sendNotification('Entry with id '+ req.params.id + ' was deleted :)');
+            pushMessage = 'Entry with id '+ req.params.id + ' was deleted :)';
             res.status(204)
             res.send( { message: "Writing deleted" })
-        } else {
-            res.status(400)
-            res.send({ error: "Writing does not exist!" })
-        }
     } catch {
+        pushMessage = "Writing could not be deleted :("
         res.status(404)
-        res.send({ error: "Something went wrong :(" })
+        res.send({ error: "Writing could not be deleted :(" })
     }
+    sendNotification(pushMessage);
 });
 
 module.exports = router;
