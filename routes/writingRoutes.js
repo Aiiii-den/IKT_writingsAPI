@@ -13,10 +13,10 @@ let pushMessage = '';
 const publicVapidKey = process.env.PUBLIC_KEY;
 const privateVapidKey = process.env.PRIVATE_KEY;
 const pushSubscription = {
-    endpoint: 'https://fcm.googleapis.com/fcm/send/dsGiMQR075Q:APA91bEgGw1mlyEVVMWekFgyTF_YXxjZJWYsQATucT-uMTx3FrrW5tOYQ5Ii0uad9L5LzJ4VDnBBEzRHpB-ALninJOHUv5cwVicv-QmkntGqV_GeFu91ly2orHP1u9i6vtoF2Pz4SfL-',
+    endpoint: process.env.ENDPOINT,
     keys: {
-        p256dh: 'BAQgZsvrvy_BTgnnzHIDE3uFrsulqd9xxCcSHwXC4zb0qITUudroqFyIqssA6F5q7JT92HGYpP37q79iKEz4MMU',
-        auth: 'JxKZLfDaF-BNz9s2Gu7jJQ'
+        p256dh: process.env.P256DH_KEY,
+        auth: process.env.AUTH_KEY
     }
 };
 
