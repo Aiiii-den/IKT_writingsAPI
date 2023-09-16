@@ -19,17 +19,17 @@ GET ALL writings: https://ikt-writingsapi.onrender.com/writing
 PATCH writing: https://ikt-writingsapi.onrender.com/writing/:id
 DELETE writing: https://ikt-writingsapi.onrender.com/writing/:id
 ```
-_For a visual representation of the possible queries please refer to the accompanying yaml: [writingsAPI.yaml](https://github.com/Aiiii-den/IKT_writingsAPI/blob/main/writingsAPI.yaml)_
+_For a visual representation of the possible requests please refer to the accompanying yaml: [writingsAPI.yaml](https://github.com/Aiiii-den/IKT_writingsAPI/blob/main/writingsAPI.yaml)_
 
+__3. Images API:__ https://github.com/Aiiii-den/IKT_imagesAPI  
 
-__3. Images API:__ https://github.com/Aiiii-den/IKT_imagesAPI
 
 ### How to install:
 1. Clone repository locally
 2. Run `npm i`
-3. Set up MongoDB (either on Atlas or Compass) : https://www.mongodb.com/de-de
-4. Create a .env file with the following structure and add your database & web push credentials
-    ```
+3. Set up MongoDB (https://www.mongodb.com/de-de)
+4. Create a .env file with the following structure and add your database, web push and web push subscription credentials
+    ``` .env
    DB_CONNECTION: mongodb+srv://<user>:<password>@<collectionId>.mongodb.net/?retryWrites=true&w=majority
    DATABASE: <database>
    
@@ -40,10 +40,9 @@ __3. Images API:__ https://github.com/Aiiii-den/IKT_imagesAPI
    P256DH_KEY = <subscription p256dh>
    AUTH_KEY = <subscription auth>
    ```
-5. Run with `npm run watch`
-
-
-
+5. Set cors() in server.js to your personal/local connection point
+6. Run with `npm run watch`
+7. Stop with `Ctrl + C`
 
 
 ### Frontend:
