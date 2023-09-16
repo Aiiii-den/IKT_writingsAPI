@@ -1,6 +1,6 @@
 # IKT_writingsAPI
 
-### Second REST-APIs for my final PWA project
+### Second REST-API for my final PWA project
 
 __1. Prompt API :__ https://github.com/Aiiii-den/IKT_promptAPI
 
@@ -12,13 +12,15 @@ GET ALL writings: https://localhost:3000/writing
 PATCH writing: https://localhost:3000/writing/:id
 DELETE writing: https://localhost:3000/writing/:id
 ```
-``` https://ikt-writingsapi.onrender.com
+```
 Deployed Endpoints: 
 POST writing: https://ikt-writingsapi.onrender.com/writing
 GET ALL writings: https://ikt-writingsapi.onrender.com/writing
 PATCH writing: https://ikt-writingsapi.onrender.com/writing/:id
 DELETE writing: https://ikt-writingsapi.onrender.com/writing/:id
 ```
+_For a visual representation of the possible queries please refer to the accompanying yaml: [writingsAPI.yaml](https://github.com/Aiiii-den/IKT_writingsAPI/blob/main/writingsAPI.yaml)_
+
 
 __3. Images API:__ https://github.com/Aiiii-den/IKT_imagesAPI
 
@@ -33,9 +35,14 @@ __3. Images API:__ https://github.com/Aiiii-den/IKT_imagesAPI
    
    PUBLIC_KEY = <public web push subscription key>
    PRIVATE_KEY = <private web push subscription key>
+   
+   ENDPOINT = <subscription endpoint>
+   P256DH_KEY = <subscription p256dh>
+   AUTH_KEY = <subscription auth>
    ```
 5. Run with `npm run watch`
-### Postman examples requests:
+
+
 
 
 
