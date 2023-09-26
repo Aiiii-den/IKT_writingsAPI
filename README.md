@@ -40,9 +40,8 @@ __3. Images API:__ https://github.com/Aiiii-den/IKT_imagesAPI
    P256DH_KEY = <subscription p256dh>
    AUTH_KEY = <subscription auth>
    ```
-5. Set cors() in server.js to your personal/local connection point
-6. Run with `npm run watch`
-7. Stop with `ctrl-c`
+5. Run with `npm run watch`
+6. Stop with `ctrl-c`
 
 
 ### Frontend:
