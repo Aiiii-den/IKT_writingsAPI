@@ -19,7 +19,7 @@ GET ALL writings: https://ikt-writingsapi.onrender.com/writing
 PATCH writing: https://ikt-writingsapi.onrender.com/writing/:id
 DELETE writing: https://ikt-writingsapi.onrender.com/writing/:id
 ```
-_For a visual representation of the possible requests please refer to the accompanying yaml: [writingsAPI.yaml](https://github.com/Aiiii-den/IKT_writingsAPI/blob/main/writingsAPI.yaml)_
+_For a more detailed representation of the possible requests please refer to the accompanying yaml: [writingsAPI.yaml](https://github.com/Aiiii-den/IKT_writingsAPI/blob/main/writingsAPI.yaml)_
 
 __3. Images API:__ https://github.com/Aiiii-den/IKT_imagesAPI  
 
